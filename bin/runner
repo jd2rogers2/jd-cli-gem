@@ -1,6 +1,7 @@
 require_relative "../config/environment.rb"
 
-class Runner
-  new_weather = Weather.new(zip)
-end
+
+
+
+test = Weather.new("01730")
 

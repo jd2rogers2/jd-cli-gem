@@ -15,44 +15,78 @@ class Weather
   attr_accessor :seven_day_weather, :seven_day_high, :seven_day_low
 
   def initialize(zip)
-    @zip = zip
-    @domain = "https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=weather+#{zip}"
+    @zip = zip.to_s
+    @domain = "https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=weather+#{@zip}"
+binding.pry
   end
 
   def scraper
     html = Nokogiri::HTML(open(@domain))
-#binding.pry
-@zip_hash = {:location => ,
-:today => ,
-:time => ,
-:weather_now => ,
-:high_today => ,
-:high_tonight => ,
-:temp_now => ,
-:precipitation => ,
-:humidity => ,
-:wind => ,
-:tomorrow_weather => ,
-:tomorrow_high => ,
-:tomorrow_low => ,
-:two_day_weather => ,
-:two_day_high => ,
-:two_day_low => ,
-:three_day_weather => ,
-:three_day_high => ,
-:three_day_low => ,
-:four_day_weather => ,
-:four_day_high => ,
-:four_day_low => ,
-:five_day_weather => ,
-:five_day_high => ,
-:five_day_low => ,
-:six_day_weather => ,
-:six_day_high => ,
-:six_day_low => ,
-:seven_day_weather => ,
-:seven_day_high => ,
-:seven_day_low => }
+=begin
+location = 
+today = 
+time = 
+weather_now = 
+high_today = 
+high_tonight = 
+temp_now = 
+precipitation = 
+humidity = 
+wind = 
+tomorrow_weather = 
+tomorrow_high = 
+tomorrow_low = 
+two_day_weather = 
+two_day_high = 
+two_day_low = 
+three_day_weather = 
+three_day_high = 
+three_day_low = 
+four_day_weather = 
+four_day_high = 
+four_day_low = 
+five_day_weather = 
+five_day_high = 
+five_day_low = 
+six_day_weather = 
+six_day_high = 
+six_day_low = 
+seven_day_weather = 
+seven_day_high = 
+seven_day_low = 
+
+@zip_hash = {:location => location, 
+:today => today, 
+:time => time, 
+:weather_now => weather_now, 
+:high_today => high_today, 
+:high_tonight => high_tonight, 
+:temp_now => temp_now, 
+:precipitation => precipitation, 
+:humidity => humidity, 
+:wind => wind, 
+:tomorrow_weather => tomorrow_weather, 
+:tomorrow_high => tomorrow_high, 
+:tomorrow_low => tomorrow_low, 
+:two_day_weather => two_day_weather, 
+:two_day_high => two_day_high, 
+:two_day_low => two_day_low, 
+:three_day_weather => three_day_weather, 
+:three_day_high => three_day_high, 
+:three_day_low => three_day_low, 
+:four_day_weather => four_day_weather, 
+:four_day_high => four_day_high, 
+:four_day_low => four_day_low, 
+:five_day_weather => five_day_weather, 
+:five_day_high => five_day_high, 
+:five_day_low => five_day_low, 
+:six_day_weather => six_day_weather, 
+:six_day_high => six_day_high, 
+:six_day_low => six_day_low, 
+:seven_day_weather => seven_day_weather, 
+:seven_day_high => seven_day_high, 
+:seven_day_low => seven_day_low}
+=end
   end
 
 end

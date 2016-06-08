@@ -5,5 +5,3 @@ require "weather-cli-gem-jd"
 
 
 
-require "irb"
-IRB.start
