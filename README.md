@@ -5,8 +5,16 @@ Flatiron OO final project
 =====notes to self=======
 cli and scraper in separate class/files?
 
+-current to dos
+filetree format, understand what's in each file
+?example proj has jibberish in bin/setup
+?bin/console has "require bundle/setup"
+?bin/worlds... is this his runner file?
+?bin/worlds... what's the commented out portion up top?
+? require vs. require_relative
+
 ----notes from - how to make gem - http://guides.rubygems.org/make-your-own-gem/
---done
+  --done
 change folder name to weather-cli-gem-jd
   and lib/weather.rb to the same
   --not done
@@ -17,4 +25,4 @@ then gem push
 remember to add all files to files list in gemspec
 
 
-----notes from - need to publish gem after - http://guides.rubygems.org/publishing/
+----notes from - publish gem - http://guides.rubygems.org/publishing/
