@@ -3,10 +3,11 @@ Flatiron OO final project
 
 
 =====notes to self=======
-cli and scraper in separate class/files?
-
 -current to dos
 filetree format, understand what's in each file
+double check console file content with other's projects
+cli and scraper in separate class/files? if so attn enviro
+add console and setup to gemspec executables??
 
 ----notes from - how to make gem - http://guides.rubygems.org/make-your-own-gem/
   --done

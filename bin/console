@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "weather-cli-gem-jd"
+require "lib/scraper.rb"
+require "lib/cli.rb"
 
 
-
+require "irb"
+IRB.start

@@ -3,5 +3,4 @@ require_relative "../config/environment.rb"
 
 
 
-test = Weather.new("01730")
-
+run = Cli.new
