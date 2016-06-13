@@ -9,16 +9,22 @@ class Cli
   def run
     puts "welcome to my command line weather gem"
     get_zip
-    options
-    what_would_you_like_to_do
+    options_stage_1
+    what_to_do_stage_1
   end
 
   def get_zip
     puts "to start i'll need your zip"
     input = gets.chomp
     if input.count("0" "1" "2" "3" "4" "5" "6" "7" "8" "9") == 5
-      @scraper = Scraper.new(input)
-      @scraper.scraper
+      begin
+        @scraper = Scraper.new(input)
+        @scraper.scraper
+        puts "thanks for the zip"
+      rescue
+        puts "U.S. zips only"
+        get_zip
+      end
     else
       puts "invalid zip"
       get_zip
@@ -29,99 +35,207 @@ class Cli
     @scraper.zip_hash
   end
 
-  def options
-    puts "thanks for the zip, now here's what you can do"
+  def options_stage_1
+    puts "welcome to the main screen"
+    puts "here's what you can do"
     puts "you can type:"
     puts "'location' - to see which zip you are currently checking the weather of"
     puts "'last update' - to see when the latest update was"
-    puts "'humidity' - to see the current humidity for your zip"
-    puts "'wind' - to see the current wind for your zip"
-    puts "'weather' - to see the current weather for your zip"
-    puts "'temperature' - to see the current temperature for your zip"
-    puts "'today high' - to see the expected high for today"
-    puts "'today low' - to see the expected low for today"
-    puts "'tomorrow weather' - to see the expected weather for tomorrow"
-    puts "'tomorrow high' - to see the expected high for tomorrow"
-    puts "'tomorrow low' - to see the expected low for tomorrow"
-    puts "'2 days weather' - to see the expected weather for 2 days from now"
-    puts "'2 days high' - to see the expected high for 2 days from now"
-    puts "'2 days low' - to see the expected low for 2 days from now"
-    puts "'3 days weather' - to see the expected weather for 3 days from now"
-    puts "'3 days high' - to see the expected high for 3 days from now"
-    puts "'3 days low' - to see the expected low for 3 days from now"
-    puts "'4 days weather' - to see the expected weather for 4 days from now"
-    puts "'4 days high' - to see the expected high for 4 days from now"
+    puts "'today' - to see today's weather options"
+    puts "'tomorrow' - to see tomorrow's weather options" 
+    puts "'2 days' - to see weather options for 2 days from now"   
+    puts "'3 days' - to see weather options for 3 days from now" 
+    puts "'4 days' - to see weather options for 4 days from now"
     puts "'change zip' - to change to another zip"
     puts "'exit' - to leave"
   end
 
-  def what_would_you_like_to_do
+  def what_to_do_stage_1
     puts "what would you like to do?"
     input = gets.chomp
     if input == "exit"
       puts "goodbye"
     elsif input == "location"
       puts weather_hash[:location]
-      what_would_you_like_to_do
+      what_to_do_stage_1
     elsif input == "last update"
       puts weather_hash[:last_update]
-      what_would_you_like_to_do
-    elsif input == "humidity"
-      puts weather_hash[:humidity]
-      what_would_you_like_to_do
-    elsif input == "wind"
-      puts weather_hash[:wind]
-      what_would_you_like_to_do
-    elsif input == "weather"
-      puts weather_hash[:now_weather]
-      what_would_you_like_to_do
-    elsif input == "temperature"
-      puts weather_hash[:now_temp]
-      what_would_you_like_to_do
-    elsif input == "today high"
-      puts weather_hash[:today_high]
-      what_would_you_like_to_do
-    elsif input == "today low"
-      puts weather_hash[:today_low]
-      what_would_you_like_to_do
-    elsif input == "tomorrow weather"
-      puts weather_hash[:tomorrow_weather]
-      what_would_you_like_to_do
-    elsif input == "tomorrow high"
-      puts weather_hash[:tomorrow_high]
-      what_would_you_like_to_do
-    elsif input == "tomorrow low"
-      puts weather_hash[:tomorrow_low]
-      what_would_you_like_to_do
-    elsif input == "2 days weather"
-      puts weather_hash[:two_day_weather]
-      what_would_you_like_to_do
-    elsif input == "2 days high"
-      puts weather_hash[:two_day_high]
-      what_would_you_like_to_do
-    elsif input == "2 days low"
-      puts weather_hash[:two_day_low]
-      what_would_you_like_to_do
-    elsif input == "3 days weather"
-      puts weather_hash[:three_day_weather]
-      what_would_you_like_to_do
-    elsif input == "3 days high"
-      puts weather_hash[:three_day_high]
-      what_would_you_like_to_do
-    elsif input == "3 days low"
-      puts weather_hash[:three_day_low]
-      what_would_you_like_to_do
-    elsif input == "4 days weather"
-      puts weather_hash[:four_day_weather]
-      what_would_you_like_to_do
-    elsif input == "4 days high"
-      puts weather_hash[:four_day_high]
-      what_would_you_like_to_do
+      what_to_do_stage_1
     elsif input == "change zip"
-      get_zip        
+      get_zip
+      options_stage_1
+      what_to_do_stage_1
+    elsif input == "today"
+      options_today
+      what_to_do_today
+    elsif input == "tomorrow"
+      options_tomorrow
+      what_to_do_tomorrow
+    elsif input == "2 days"
+      options_2_days
+      what_to_do_2_days
+    elsif input == "3 days"
+      options_3_days
+      what_to_do_3_days
+    elsif input == "4 days"
+      options_4_days
+      what_to_do_4_days
     else
       puts "invalid input"
-      what_would_you_like_to_do
+      what_to_do_stage_1
+    end
+  end
+
+  def options_today
+    puts "here are your options for today's weather"
+    puts "'humidity' - to see the current humidity for your zip"
+    puts "'wind' - to see the current wind for your zip"
+    puts "'weather' - to see the current weather for your zip"
+    puts "'temperature' - to see the current temperature for your zip"
+    puts "'today high' - to see the expected high for today"
+    puts "'today low' - to see the expected low for today"
+    puts "'back' - to return to the main screen"
+  end
+
+  def what_to_do_today
+    puts "what would you like to know about today's weather?"
+    input = gets.chomp
+    if input == "humidity"
+      puts weather_hash[:humidity]
+      what_to_do_today
+    elsif input == "wind"
+      puts weather_hash[:wind]
+      what_to_do_today
+    elsif input == "weather"
+      puts weather_hash[:now_weather]
+      what_to_do_today
+    elsif input == "temperature"
+      puts weather_hash[:now_temp]
+      what_to_do_today
+    elsif input == "today high"
+      puts weather_hash[:today_high]
+      what_to_do_today
+    elsif input == "today low"
+      puts weather_hash[:today_low]
+      what_to_do_today
+    elsif input == "back"
+      options_stage_1
+      what_to_do_stage_1
+    else
+      puts "invalid input"
+      what_to_do_today
+    end
+  end
+
+  def options_tomorrow
+    puts "here are your options for tomorrow's weather"
+    puts "'tomorrow weather' - to see the expected weather for tomorrow"
+    puts "'tomorrow high' - to see the expected high for tomorrow"
+    puts "'tomorrow low' - to see the expected low for tomorrow"
+    puts "'back' - to return to the main screen"
+  end
+
+  def what_to_do_tomorrow
+    puts "what would you like to know about tomorrow's weather?"
+    input = gets.chomp
+    if input == "tomorrow weather"
+      puts weather_hash[:tomorrow_weather]
+      what_to_do_tomorrow
+    elsif input == "tomorrow high"
+      puts weather_hash[:tomorrow_high]
+      what_to_do_tomorrow
+    elsif input == "tomorrow low"
+      puts weather_hash[:tomorrow_low]
+      what_to_do_tomorrow
+    elsif input == "back"
+      options_stage_1
+      what_to_do_stage_1
+    else
+      puts "invalid input"
+      what_to_do_today
+    end
+  end
+
+  def options_2_days
+    puts "here are your options for the weather 2 days from now"
+    puts "'2 days weather' - to see the expected weather for 2 days from now"
+    puts "'2 days high' - to see the expected high for 2 days from now"
+    puts "'2 days low' - to see the expected low for 2 days from now"
+    puts "'back' - to return to the main screen"
+  end
+
+  def what_to_do_2_days
+    puts "what would you like to know about the weather 2 days from now?"
+    input = gets.chomp
+    if input == "2 days weather"
+      puts weather_hash[:two_day_weather]
+      what_to_do_2_days
+    elsif input == "2 days high"
+      puts weather_hash[:two_day_high]
+      what_to_do_2_days
+    elsif input == "2 days low"
+      puts weather_hash[:two_day_low]
+      what_to_do_2_days
+    elsif input == "back"
+      options_stage_1
+      what_to_do_stage_1
+    else
+      puts "invalid input"
+      what_to_do_today
+    end
+  end
+
+  def options_3_days
+    puts "here are your options for the weather 3 days from now"
+    puts "'3 days weather' - to see the expected weather for 3 days from now"
+    puts "'3 days high' - to see the expected high for 3 days from now"
+    puts "'3 days low' - to see the expected low for 3 days from now"
+    puts "'back' - to return to the main screen"
+  end
+
+  def what_to_do_3_days
+    puts "what would you like to know about the weather 3 days from now?"
+    input = gets.chomp
+    if input == "3 days weather"
+      puts weather_hash[:three_day_weather]
+      what_to_do_3_days
+    elsif input == "3 days high"
+      puts weather_hash[:three_day_high]
+      what_to_do_3_days
+    elsif input == "3 days low"
+      puts weather_hash[:three_day_low]
+      what_to_do_3_days
+    elsif input == "back"
+      options_stage_1
+      what_to_do_stage_1
+    else
+      puts "invalid input"
+      what_to_do_today
+    end
+  end
+
+  def options_4_days
+    puts "here are your options for the weather 4 days from now"
+    puts "'4 days weather' - to see the expected weather for 4 days from now"
+    puts "'4 days high' - to see the expected high for 4 days from now"
+    puts "'back' - to return to the main screen"
+  end
+
+  def what_to_do_4_days
+    puts "what would you like to know about the weather 4 days from now?"
+    input = gets.chomp
+    if input == "4 days weather"
+      puts weather_hash[:four_day_weather]
+      what_to_do_4_days
+    elsif input == "4 days high"
+      puts weather_hash[:four_day_high]
+      what_to_do_4_days     
+    elsif input == "back"
+      options_stage_1
+      what_to_do_stage_1
+    else
+      puts "invalid input"
+      what_to_do_today
     end
   end
 
