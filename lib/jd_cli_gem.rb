@@ -1,6 +1,6 @@
 class Cli
   attr_accessor :scraper
-  attr_reader :weather_hash
+  attr_reader :weather
 
   def initialize
     run
@@ -18,8 +18,7 @@ class Cli
     input = gets.chomp
     if input.count("0" "1" "2" "3" "4" "5" "6" "7" "8" "9") == 5
       begin
-        @scraper = Scraper.new(input)
-        @scraper.scraper
+        @weather = Scraper.new(input).weather
         puts "thanks for the zip"
       rescue
         puts "U.S. zips only"
@@ -29,10 +28,6 @@ class Cli
       puts "invalid zip"
       get_zip
     end
-  end
-
-  def weather_hash
-    @scraper.zip_hash
   end
 
   def options_stage_1
@@ -56,10 +51,10 @@ class Cli
     if input == "exit"
       puts "goodbye"
     elsif input == "location"
-      puts weather_hash[:location]
+      puts weather.location
       what_to_do_stage_1
     elsif input == "last update"
-      puts weather_hash[:last_update]
+      puts weather.last_update
       what_to_do_stage_1
     elsif input == "change zip"
       get_zip
@@ -101,22 +96,22 @@ class Cli
     puts "what would you like to know about today's weather?"
     input = gets.chomp
     if input == "humidity"
-      puts weather_hash[:humidity]
+      puts weather.humidity
       what_to_do_today
     elsif input == "wind"
-      puts weather_hash[:wind]
+      puts weather.wind
       what_to_do_today
     elsif input == "weather"
-      puts weather_hash[:now_weather]
+      puts weather.now_weather
       what_to_do_today
     elsif input == "temperature"
-      puts weather_hash[:now_temp]
+      puts weather.now_temp
       what_to_do_today
     elsif input == "today high"
-      puts weather_hash[:today_high]
+      puts weather.today_high
       what_to_do_today
     elsif input == "today low"
-      puts weather_hash[:today_low]
+      puts weather.today_low
       what_to_do_today
     elsif input == "back"
       options_stage_1
@@ -139,13 +134,13 @@ class Cli
     puts "what would you like to know about tomorrow's weather?"
     input = gets.chomp
     if input == "tomorrow weather"
-      puts weather_hash[:tomorrow_weather]
+      puts weather.tomorrow_weather
       what_to_do_tomorrow
     elsif input == "tomorrow high"
-      puts weather_hash[:tomorrow_high]
+      puts weather.tomorrow_high
       what_to_do_tomorrow
     elsif input == "tomorrow low"
-      puts weather_hash[:tomorrow_low]
+      puts weather.tomorrow_low
       what_to_do_tomorrow
     elsif input == "back"
       options_stage_1
@@ -168,13 +163,13 @@ class Cli
     puts "what would you like to know about the weather 2 days from now?"
     input = gets.chomp
     if input == "2 days weather"
-      puts weather_hash[:two_day_weather]
+      puts weather.two_day_weather
       what_to_do_2_days
     elsif input == "2 days high"
-      puts weather_hash[:two_day_high]
+      puts weather.two_day_high
       what_to_do_2_days
     elsif input == "2 days low"
-      puts weather_hash[:two_day_low]
+      puts weather.two_day_low
       what_to_do_2_days
     elsif input == "back"
       options_stage_1
@@ -197,13 +192,13 @@ class Cli
     puts "what would you like to know about the weather 3 days from now?"
     input = gets.chomp
     if input == "3 days weather"
-      puts weather_hash[:three_day_weather]
+      puts weather.three_day_weather
       what_to_do_3_days
     elsif input == "3 days high"
-      puts weather_hash[:three_day_high]
+      puts weather.three_day_high
       what_to_do_3_days
     elsif input == "3 days low"
-      puts weather_hash[:three_day_low]
+      puts weather.three_day_low
       what_to_do_3_days
     elsif input == "back"
       options_stage_1
@@ -225,10 +220,10 @@ class Cli
     puts "what would you like to know about the weather 4 days from now?"
     input = gets.chomp
     if input == "4 days weather"
-      puts weather_hash[:four_day_weather]
+      puts weather.four_day_weather
       what_to_do_4_days
     elsif input == "4 days high"
-      puts weather_hash[:four_day_high]
+      puts weather.four_day_high
       what_to_do_4_days     
     elsif input == "back"
       options_stage_1
