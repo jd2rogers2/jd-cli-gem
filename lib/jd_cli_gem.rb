@@ -17,15 +17,15 @@ class Cli
     puts "to start i'll need your zip"
     input = gets.chomp
     if input.count("0" "1" "2" "3" "4" "5" "6" "7" "8" "9") == 5
-      begin
-        @weather = Scraper.new(input).weather
-        puts "thanks for the zip"
-      rescue
-        puts "U.S. zips only"
+      @weather = Scraper.new(input).weather
+      if @weather.invalid_zip == true
+        puts "Sorry, that is not a valid U.S. zip"
         get_zip
+      else
+        puts "thanks for the zip"
       end
     else
-      puts "invalid zip"
+      puts "a valid zip is 5 sequential numbers, please try again"
       get_zip
     end
   end
